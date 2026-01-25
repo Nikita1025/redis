@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { RedisService } from './redis/redis.service';
+import { EventsPublisher } from './redis/events.publisher';
 
 @Injectable()
 export class AppService {
-  constructor(private readonly redisService: RedisService) {}
+  constructor(
+    private readonly redisService: RedisService,
+    private readonly eventsPublisher: EventsPublisher,
+  ) {}
 
   async getData() {
     const cacheKey = 'redis-cache';
